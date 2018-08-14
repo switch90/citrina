@@ -71,18 +71,18 @@ To obtain a new token you can use special authentication helpers.
 
 For user tokens use __GenerateLink__ with __LinkType.Code__ for [Authorization Code Flow](https://vk.com/dev/authcode_flow_user) and __LinkType.Token__ for [Implicit Flow](https://vk.com/dev/implicit_flow_user).
 ```csharp
-var codeLink = client.Authentication.GenerateLink(LinkType.Code, 7654321, "http://test.com/account", DisplayOptions.Default, UserPermissions.Audio | UserPermissions.Offline, "some message");
+var codeLink = client.AuthHelper.GenerateLink(LinkType.Code, 7654321, "http://test.com/account", DisplayOptions.Default, UserPermissions.Audio | UserPermissions.Offline, "some message");
 ```
 Use GetAccessTokenAsync to get an access token for Authorization Code Flow.
 Note that __RedirectUri__ in __GetAccessTokenAsync__ method must be equal to __RedirectUri__ in __GenerateLink__ method!
 ```csharp
-var call = await client.Authentication.GetAccessTokenAsync(7654321, "wkE1SyDTei4h2MyV", "http://test.com/account", "ecc20ad9c6a53a5");
+var call = await client.AuthHelper.GetAccessTokenAsync(7654321, "wkE1SyDTei4h2MyV", "http://test.com/account", "ecc20ad9c6a53a5");
 var token = call.AccessToken;
 ```
 
 Code generation and token obtaining process for community tokens is almost the same.
 ```csharp
-var codeLink = client.Authentication.GenerateLink(LinkType.Code, 7654321, new []{ 123123123, 345345345 }, "http://test.com/account", DisplayOptions.Default, GroupPermissions.Manage | GroupPermissions.Messages, "some message");
+var codeLink = client.AuthHelper.GenerateLink(LinkType.Code, 7654321, new []{ 123123123, 345345345 }, "http://test.com/account", DisplayOptions.Default, GroupPermissions.Manage | GroupPermissions.Messages, "some message");
 ```
 
 ### Working with API
